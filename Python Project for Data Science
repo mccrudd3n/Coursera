@@ -1,0 +1,88 @@
+Question 1: Use yfinance to Extract Stock Data
+Reset the index, save, and display the first five rows of the tesla_data dataframe using the head function. Upload a screenshot of the results and code from the beginning of Question 1 to the results below.
+
+import yfinance as yf
+# Download historical data for a stock
+tesla = yf.Ticker("TSLA")
+tesla_data = tesla.history(period="max")
+# Display the downloaded data
+tesla_data.head()
+
+Question 2: Use Webscraping to Extract Tesla Revenue Data
+
+Display the last five rows of the tesla_revenue dataframe using the tail function. Upload a screenshot of the results.
+import yfinance as yf
+# Download historical data for a stock
+tesla = yf.Ticker("TSLA")
+tesla_data = tesla.history(period="max")
+# Display the downloaded data
+tesla_data.tail()
+
+Question 3: Use yfinance to Extract Stock Data
+
+Reset the index, save, and display the first five rows of the gme_data dataframe using the head function. Upload a screenshot of the results and code from the beginning of Question 1 to the results below
+
+import yfinance as yf
+# Download historical data for a stock
+tesla = yf.Ticker("TSLA")
+tesla_data = tesla.history(period="max")
+# Display the downloaded data
+tesla_data.head()
+
+Question 4: Use Webscraping to Extract GME Revenue Data
+Display the last five rows of the gme_revenue dataframe using the tail function. Upload a screenshot of the results
+
+import yfinance as yf
+# Download historical data for a stock
+gme = yf.Ticker("GME")
+gme_revenue = gme.history(period="max")
+# Display the downloaded data
+gme_revenue.tail()
+
+
+Question 5: Plot Tesla Stock Graph
+Use the make_graph function to graph the Tesla Stock Data, also provide a title for the graph.
+
+import yfinance as yf
+import pandas as pd
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+# download data 
+tsla = yf.Ticker("TSLA")
+tsla_data = tsla.history(period="24mo")  # Fetching 1 month of historical data
+tsla_data.reset_index(inplace=True)  # Reset index for proper date handling
+
+# graph
+def make_graph(stock_data, stock):
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, subplot_titles=["Stock Price", "Revenue"], vertical_spacing=0.2)
+
+    fig.add_trace(go.Scatter(x=stock_data["Date"], y=stock_data["Close"], name="Stock Price"), row=1, col=1)
+    fig.update_layout(title=f"{stock} Stock & Revenue", height=600, xaxis_rangeslider_visible=True)
+    fig.show()
+
+# Plot Tesla graph
+make_graph(tsla_data, "Tesla (TSLA)")
+
+Question 6: Plot GameStop Stock Graph
+Use the make_graph function to graph the GameStop Stock Data, also provide a title for the graph.
+
+import yfinance as yf
+import pandas as pd
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+# download data 
+gme = yf.Ticker("GME")
+gme_data = gme.history(period="24mo")  # Fetching 1 month of historical data
+gme_data.reset_index(inplace=True)  # Reset index for proper date handling
+
+# graph
+def make_graph(stock_data, stock):
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, subplot_titles=["Stock Price", "Revenue"], vertical_spacing=0.2)
+    fig.add_trace(go.Scatter(x=stock_data["Date"], y=stock_data["Close"], name="Stock Price"), row=1, col=1)
+    fig.update_layout(title=f"{stock} Stock & Revenue", height=600, xaxis_rangeslider_visible=True)
+    fig.show()
+
+# Plot Tesla graph
+make_graph(gme_data, "GameStock (GME)")
